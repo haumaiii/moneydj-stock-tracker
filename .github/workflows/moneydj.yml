@@ -1,0 +1,52 @@
+name: Update and publish MoneyDJ
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '23 9 * * 1-5'
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: moneydj-pages
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Fetch MoneyDJ data
+        id: update
+        continue-on-error: true
+        run: python3 update.py
+
+      - name: Save selection history
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add site/data.js site/status.js
+          if ! git diff --cached --quiet; then
+            git commit -m "Update MoneyDJ selection history"
+            git push origin HEAD:main
+          fi
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+      - id: deploy
+        uses: actions/deploy-pages@v4
+
+      - if: steps.update.outcome == 'failure'
+        run: exit 1
