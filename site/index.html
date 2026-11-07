@@ -5,6 +5,7 @@
 <div class="filters"><input id="q" type="search" aria-label="股票代號或名稱" placeholder="搜尋代號或名稱"><label>觀察窗 <select id="days"><option value="5">5 日</option><option value="4">4 日</option><option value="3">3 日</option></select></label><label>分類 <select id="kind"><option value="">全部</option><option>連續強勢</option><option>單日急漲</option><option>重複出現</option><option>單日出現</option></select></label><label>排序 <select id="sort"><option value="hits">出現次數</option><option value="gain">最近漲幅</option><option value="last">最近出現</option><option value="first">首次出現</option><option value="code">股票代號</option></select></label><label><input type="checkbox" id="asc">升冪</label><label id="dateWrap">資料日 <select id="date"></select></label></div>
 <p id="note"></p><div id="view"></div>
 <aside><details><summary>新增每日資料</summary><p>將 Google 試算表的歷史明細分頁下載成 CSV，再匯入。必備欄位為「日期」（或「資料日期」）、「股票代號」、「股票名稱」、「收盤價」、「漲跌幅」。同日同代號會更新，所有頁面隨即重算。新增紀錄儲存在目前瀏覽器。</p><input id="file" type="file" accept=".csv,text/csv" aria-label="匯入 CSV"><p id="status" role="status"></p></details></aside></main>
-<p id="update-status" role="status"></p><script src="status.js"></script><script src="data.js"></script><script src="app.js"></script>
+<p id="update-status" role="status"></p><script src="status.js"></script><script src="data.js"></script><script src="app.js?v=three-tabs-2"></script>
+
 
 
