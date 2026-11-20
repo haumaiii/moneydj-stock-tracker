@@ -1,1 +1,1 @@
-const updateStatus={"checkedAt": "2026-11-19T18:28:05.442199+08:00", "ok": true};
+const updateStatus={"checkedAt": "2026-11-20T18:26:26.079454+08:00", "ok": false};
